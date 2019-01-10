@@ -1,7 +1,7 @@
 const aifiMoneyID = document.getElementById('aifiMoney').value;
 const percentageID = document.getElementById('percentage').value;
 const calculateID = document.getElementById('calculate');
-
+const fromListID = document.getElementById('fromList');
 function calculateTotalAifi(e) {
     e.preventDefault();
     const appAifianID = document.getElementById('appAifian');
@@ -26,8 +26,10 @@ function calculateTotalAifi(e) {
             <em id="resultAifi">${Math.round(day7Money)}</em>元
         </p>
     `;
-    localStorage.setItem('aifianList', strList);
+    localStorage.setItem('aifianList', JSON.stringify(strList));
+    
     appAifianID.innerHTML = str;
+    fromListID.reset();
 }
 
 
