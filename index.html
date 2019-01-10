@@ -15,16 +15,17 @@
             <form id="fromList">
                 <div class="form-group">
                     <label for="aifiMoney">投資金額(AIFI)</label>
-                    <input type="text" class="form-control" id="aifiMoney" placeholder="AIFI">
+                    <input type="number" class="form-control" id="aifiMoney" min="3000" max="297000" placeholder="3000">
                     <small id="emailHelp" class="form-text text-muted">請輸入您已經投資的Aifi金額.</small>
                 </div>
                 <div class="form-group">
                     <label for="percentage">上週年化回饋 (%)</label>
-                    <input type="text" class="form-control" id="percentage" placeholder="百分比">
+                    <input type="number" class="form-control" id="percentage" min="1" placeholder="8.5">
                 </div>
                 <a href="#" class="btn btn-primary" id="calculate">送出</a>
-                <div id="appAifian"></div>
             </form>
+            <div id="appAifian"></div>
+            <div id="localAifianList"></div>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
