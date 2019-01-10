@@ -28,11 +28,8 @@ function calculateTotalAifi(e) {
         </p>
     `;
     localStorage.setItem('aifianList', JSON.stringify(strList));
-    
     appAifianID.innerHTML = str;
     document.getElementById('fromList').reset();
 }
-
-
 
 calculateID.addEventListener('click', calculateTotalAifi);
