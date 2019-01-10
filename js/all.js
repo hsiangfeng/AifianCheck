@@ -4,13 +4,13 @@ const calculateID = document.getElementById('calculate');
 
 function calculateTotalAifi(e) {
     e.preventDefault();
-    let appAifianID = document.getElementById('appAifian');
-    let str = '';
+    const appAifianID = document.getElementById('appAifian');
+    str = '';
     const dayYears = 365;
     const aifiPoint = percentageID / 100;
     const day365Money = (aifiMoneyID * aifiPoint);
     const day7Money = (day365Money / dayYears * 7);
-    str += `
+    str = `
         <p>一年收益(365天)
             <em id="result365">${day365Money.toFixed(2)}</em>元
         </p>
@@ -21,6 +21,7 @@ function calculateTotalAifi(e) {
             <em id="resultAifi">${Math.round(day7Money)}</em>元
         </p>
     `;
+    localStorage.setItem('aifianList',str);
     appAifianID.innerHTML = str;
 }
 
