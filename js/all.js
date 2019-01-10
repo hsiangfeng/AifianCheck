@@ -29,7 +29,6 @@ function calculateTotalAifi(e) {
     localStorage.setItem('aifianList', JSON.stringify(strList));
     
     appAifianID.innerHTML = str;
-    fromListID.reset();
 }
 
 
