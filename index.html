@@ -5,9 +5,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Aifian計算器</title>
+        <title>Aifian驗證回饋率</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
             integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="css/all.css">
     </head>
 
     <body>
@@ -20,12 +23,15 @@
                 </div>
                 <div class="form-group">
                     <label for="percentage">上週年化回饋 (%)</label>
-                    <input type="number" class="form-control" id="percentage" min="1" placeholder="8.5">
+                    <input type="text" class="form-control" id="percentage" placeholder="8.5">
                 </div>
                 <a href="#" class="btn btn-primary" id="calculate">送出</a>
             </form>
+
             <div id="appAifian"></div>
-            <div id="localAifianList"></div>
+            <div class="h3">歷史紀錄</div>
+            <small>(僅記錄在本機瀏覽器中，請注意紀錄有可能會自己刪除。)</small>
+            <div class="text-white" id="localAifianList"></div>
         </div>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
