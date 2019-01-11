@@ -51,10 +51,10 @@ function calculateTotalAifi(e) {
     document.getElementById('fromList').reset();
 }
 //getLocalStorage
-function loaclIndex(item) {
+function loaclIndex(data) {
     let localAifianListID = document.getElementById('localAifianList');
     let str = '';
-    item.forEach(function (item, index) {
+    data.forEach(function (item, index) {
         str += `
             <div class="row py-2 rounded">
                 <div class="col-md-12">
