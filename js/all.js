@@ -90,7 +90,7 @@ function loaclIndex(data) {
 function removeAifian(e) {
     let str = e.target.dataset.index;
     console.log(e.target.nodeName);
-    if (e.target.nodeName == "BUTTON") {
+    if (e.target.nodeName == "I") {
         aifianArrayList.splice(str, 1);
         localStorage.setItem('aifianList', JSON.stringify(aifianArrayList));
         loaclIndex(aifianArrayList);
