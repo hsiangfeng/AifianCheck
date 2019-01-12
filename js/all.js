@@ -4,7 +4,7 @@ const percentageID = document.getElementById('percentage');
 const calculateID = document.getElementById('calculate');
 //form
 const fromListID = document.getElementById('fromList');
-const containerID = document.querySelector('.container');
+const containerID = document.getElementById('main-container');
 //setting localStorage
 let aifianArrayList = JSON.parse(localStorage.getItem('aifianList')) || [];
 //firstIndex
@@ -112,6 +112,6 @@ function Verify(e) {
 
 //event
 calculateID.addEventListener('click', calculateTotalAifi);
-containerID.addEventListener('click', removeAifian)
+containerID.addEventListener('click', removeAifian);
 aifiMoneyID.addEventListener('blur', Verify);
 percentageID.addEventListener('blur', Verify);
