@@ -59,7 +59,7 @@ function loaclIndex(data) {
             <div class="row py-2 rounded">
                 <div class="col-md-12">
                     <button type="button" class="close" aria-label="Close" data-index="${index}">
-                        <i class="fas fa-trash-alt"></i><span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" class="fas fa-trash-alt">&times;</span>
                     </button>
                 </div>
                 <div class="col-md-12 bg-primary py-5 aifian-bg d-flex justify-content-center align-items-center flex-column">
@@ -90,7 +90,7 @@ function loaclIndex(data) {
 function removeAifian(e) {
     let str = e.target.dataset.index;
     console.log(e.target.nodeName);
-    if (e.target.nodeName == "I") {
+    if (e.target.nodeName == "SPAN") {
         aifianArrayList.splice(str, 1);
         localStorage.setItem('aifianList', JSON.stringify(aifianArrayList));
         loaclIndex(aifianArrayList);
