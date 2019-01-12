@@ -6,10 +6,10 @@ const calculateID = document.getElementById('calculate');
 const fromListID = document.getElementById('fromList');
 const containerID = document.querySelector('.container');
 //setting localStorage
-let aifianArrayList = JSON.parse(localStorage.getItem('aifianList')) || []
+let aifianArrayList = JSON.parse(localStorage.getItem('aifianList')) || [];
 //firstIndex
 loaclIndex(aifianArrayList);
-
+//countAifiTitle
 function calculateTotalAifi(e) {
     e.preventDefault();
     const appAifianID = document.getElementById('appAifian');
@@ -51,10 +51,10 @@ function calculateTotalAifi(e) {
     document.getElementById('fromList').reset();
 }
 //getLocalStorage
-function loaclIndex(data) {
+function loaclIndex(a) {
     let localAifianListID = document.getElementById('localAifianList');
     let str = '';
-    data.forEach(function (item, index) {
+    a.forEach(function (item, index) {
         str += `
             <div class="row py-2 rounded">
                 <div class="col-md-12">
