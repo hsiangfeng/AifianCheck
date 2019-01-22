@@ -1,0 +1,18 @@
+extend layout/layout.pug
+block navbar
+    - var path = "aifianExcel.html"
+    include layout/navbar.pug
+block content
+    .container
+        table.table.table-striped.table-hover.table-responsive-md.table-bordered.text-center
+            thead.sticky-top.bg-white
+            tr
+                th(scope='col') 筆數
+                th(scope='col') 日期
+                th(scope='col') 歷史收益(%)
+                th(scope='col') 一年收益(365天)
+                th(scope='col') 七天收益
+                th(scope='col') 七天實際收益
+                th(scope='col') 備註
+                th(scope='col') 數值參照
+            tbody#table
