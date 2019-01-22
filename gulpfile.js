@@ -15,7 +15,7 @@ let options = minimist(process.argv.slice(2), envOptions)
 console.log(options);
 
 gulp.task('copyData', () => {
-    return gulp.src('./source/data/**/*.json')
+    return gulp.src('./source/data/data.json')
         .pipe(gulp.dest('./public/data'))
 })
 
@@ -27,6 +27,13 @@ gulp.task('copyExcel', () => {
 gulp.task('pug', () => {
     return gulp.src('./source/*.pug')
         .pipe($.plumber())
+        .pipe($.data(function () {
+            let menu = require('./source/data/menu.json');
+            let source = {
+                'menu': menu
+            };
+            return source;
+        }))
         .pipe($.pug())
         .pipe(gulp.dest('./public/'))
         .pipe(browserSync.stream())
@@ -39,7 +46,10 @@ gulp.task('sass', () => {
     return gulp.src('./source/scss/**/*.scss')
         .pipe($.plumber())
         .pipe($.sourcemaps.init())
-        .pipe($.sass().on('error', $.sass.logError))
+        .pipe($.sass({
+            outputStyle: 'nested',
+            includePaths: ['./node_modules/bootstrap/scss']
+        }).on('error', $.sass.logError))
         .pipe($.postcss(plugins))
         .pipe($.if(options.env === 'prod', $.cleanCss()))
         .pipe($.sourcemaps.write('.'))
@@ -47,7 +57,7 @@ gulp.task('sass', () => {
         .pipe(browserSync.stream())
 });
 
-gulp.task('babel', () => 
+gulp.task('babel', () =>
     gulp.src('./source/js/**/*.js')
         .pipe($.sourcemaps.init())
         .pipe($.babel({
@@ -64,10 +74,10 @@ gulp.task('babel', () =>
         .pipe(browserSync.stream())
 );
 
-gulp.task('image-min', () => 
+gulp.task('image-min', () =>
     gulp.src(['./source/img/*', './source/img/*/**'])
         .pipe($.if(options.env === 'prod', $.image()))
-        .pipe(gulp.dest('./public/images'))
+        .pipe(gulp.dest('./public/img'))
 );
 
 gulp.task('browser-sync', () => {

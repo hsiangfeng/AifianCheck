@@ -1,0 +1,12 @@
+{
+    "list": [
+        {
+            "name": "首頁",
+            "url": "index.html"
+        },
+        {
+            "name": "歷史收益表",
+            "url": "aifianExcel.html"
+        }
+    ]
+}
