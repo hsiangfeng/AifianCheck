@@ -1,41 +1,22 @@
-switch (location.pathname) {
-    case "/index.htm":
-        indexFu();
-        break;
-    case "/aifianExcel.html":
-        aifianJSON();
-        break;
-}
+//countAifiTitle
+function calculateTotalAifi(e) {
+    e.preventDefault();
+    const appAifianID = document.getElementById('appAifian');
+    const dayYears = 365;
+    const dayWeek = 7;
+    const aifiPoint = parseInt(percentageID.value) / 100;
+    const day365Money = parseFloat(aifiMoneyID.value) * aifiPoint;
+    const day7Money = day365Money / dayYears * dayWeek;
+    const nowDateTime = nowAifianDate();
 
-function indexFu() {
-    const aifiMoneyID = document.getElementById('aifiMoney');
-    const percentageID = document.getElementById('percentage');
-    const calculateID = document.getElementById('calculate');
-
-    const containerID = document.getElementById('main-container');
-
-    let aifianArrayList = JSON.parse(localStorage.getItem('aifianList')) || [];
-
-    loaclIndex(aifianArrayList);
-    //countAifiTitle
-    function calculateTotalAifi(e) {
-        e.preventDefault();
-        const appAifianID = document.getElementById('appAifian');
-        const dayYears = 365;
-        const dayWeek = 7;
-        const aifiPoint = parseInt(percentageID.value) / 100;
-        const day365Money = parseFloat(aifiMoneyID.value) * aifiPoint;
-        const day7Money = day365Money / dayYears * dayWeek;
-        const nowDateTime = nowAifianDate();
-
-        const strList = {
-            day365Money: day365Money.toFixed(2),
-            day7Money: day7Money.toFixed(2),
-            realMoney: Math.round(day7Money),
-            dateTime: nowDateTime
-        }
-        let str = '';
-        str = `
+    const strList = {
+        day365Money: day365Money.toFixed(2),
+        day7Money: day7Money.toFixed(2),
+        realMoney: Math.round(day7Money),
+        dateTime: nowDateTime
+    }
+    let str = '';
+    str = `
         <div class="h3">本次計算結果</div>
         <p>一年收益(365天)
             <em id="result365">${strList.day365Money}</em>元
@@ -50,18 +31,18 @@ function indexFu() {
             <em id="dateTime">${strList.dateTime}</em>元
         </p>
     `;
-        aifianArrayList.push(strList);
-        localStorage.setItem('aifianList', JSON.stringify(aifianArrayList));
-        appAifianID.innerHTML = str;
-        loaclIndex(aifianArrayList);
-        document.getElementById('fromList').reset();
-    }
-    //getLocalStorage
-    function loaclIndex(data) {
-        let localAifianListID = document.getElementById('localAifianList');
-        let str = '';
-        data.forEach(function (item, index) {
-            str += `
+    aifianArrayList.push(strList);
+    localStorage.setItem('aifianList', JSON.stringify(aifianArrayList));
+    appAifianID.innerHTML = str;
+    loaclIndex(aifianArrayList);
+    document.getElementById('fromList').reset();
+}
+//getLocalStorage
+function loaclIndex(data) {
+    let localAifianListID = document.getElementById('localAifianList');
+    let str = '';
+    data.forEach(function (item, index) {
+        str += `
             <div class="row py-2 rounded">
                 <div class="col-md-12">
                     <button type="button" class="close fas fa-trash-alt" aria-label="Close" data-index="${index}">
@@ -90,55 +71,51 @@ function indexFu() {
                 </div>
             </div>
         `;
-        });
-        localAifianListID.innerHTML = str;
-    }
-    function removeAifian(e) {
-        let str = e.target.dataset.index;
-        if (e.target.nodeName !== "BUTTON") { return }
-        aifianArrayList.splice(str, 1);
-        localStorage.setItem('aifianList', JSON.stringify(aifianArrayList));
-        loaclIndex(aifianArrayList);
-    }
-    //get NowDateTime
-    function nowAifianDate() {
-        const now = new Date;
-        const nowDateTime = now.getFullYear() + '/' + (now.getMonth() + 1) + '/' + now.getDate() + '  ' + now.getHours() + ':' + now.getMinutes();
-        return nowDateTime;
-    }
-    //Verify input null
-    function Verify(e) {
-        var strinput = e.target.value;
-        if (strinput == '') {
-            alert('欄位不得為空值');
-        }
-    }
-
-    //event
-    calculateID.addEventListener('click', calculateTotalAifi);
-    containerID.addEventListener('click', removeAifian);
-    aifiMoneyID.addEventListener('blur', Verify);
-    percentageID.addEventListener('blur', Verify);
+    });
+    localAifianListID.innerHTML = str;
 }
-function aifianJSON() {
-    //dowload JSON
-    const xhr = new XMLHttpRequest();
-    let _data;
-    xhr.open('get', 'https://hsiangfeng.github.io/AifianCheck/data/data.json');
-    xhr.send(null);
-    xhr.onload = function () {
-        _data = JSON.parse(xhr.responseText);
-        defaultData()
+function removeAifian(e) {
+    let str = e.target.dataset.index;
+    if (e.target.nodeName !== "BUTTON") { return }
+    aifianArrayList.splice(str, 1);
+    localStorage.setItem('aifianList', JSON.stringify(aifianArrayList));
+    loaclIndex(aifianArrayList);
+}
+//get NowDateTime
+function nowAifianDate() {
+    const now = new Date;
+    const nowDateTime = now.getFullYear() + '/' + (now.getMonth() + 1) + '/' + now.getDate() + '  ' + now.getHours() + ':' + now.getMinutes();
+    return nowDateTime;
+}
+//Verify input null
+function Verify(e) {
+    var strinput = e.target.value;
+    if (strinput == '') {
+        alert('欄位不得為空值');
     }
+}
 
-    let tableID = document.getElementById('table');
 
-    function defaultData() {
-        let data = _data;
-        let arrayList = '';
-        data.forEach(function (item, index) {
-            arrayList +=
-                `
+
+
+//dowload JSON
+const xhr = new XMLHttpRequest();
+let _data;
+xhr.open('get', 'https://hsiangfeng.github.io/AifianCheck/data/data.json');
+xhr.send(null);
+xhr.onload = function () {
+    _data = JSON.parse(xhr.responseText);
+    defaultData()
+}
+
+
+
+function defaultData() {
+    let data = _data;
+    let arrayList = '';
+    data.forEach(function (item, index) {
+        arrayList +=
+            `
             <tr>
                 <th scope="row">${index + 1}</th>
                 <td>${item.日期}</td>
@@ -150,7 +127,6 @@ function aifianJSON() {
                 <td>${item.數值參照}</td>
             </tr>
         `;
-        })
-        tableID.innerHTML = arrayList;
-    }
+    })
+    tableID.innerHTML = arrayList;
 }

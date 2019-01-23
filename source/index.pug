@@ -20,3 +20,17 @@ block content
             span.text-danger 紀錄有可能會不見唷!。
             | )
         #localAifianList.text-white
+    include layout/footer.pug
+    script.
+        const fromListID = document.getElementById('fromList');
+        const containerID = document.getElementById('main-container');
+        const aifiMoneyID = document.getElementById('aifiMoney');
+        const percentageID = document.getElementById('percentage');
+        const calculateID = document.getElementById('calculate');
+        let aifianArrayList = JSON.parse(localStorage.getItem('aifianList')) || [];
+        //-event
+        calculateID.addEventListener('click', calculateTotalAifi);
+        containerID.addEventListener('click', removeAifian);
+        aifiMoneyID.addEventListener('blur', Verify);
+        percentageID.addEventListener('blur', Verify);
+        loaclIndex(aifianArrayList);
