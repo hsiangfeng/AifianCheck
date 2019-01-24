@@ -37,10 +37,10 @@ function calculateTotalAifi(e) {
     document.getElementById('fromList').reset();
 }
 //getLocalStorage
-function loaclIndex(data) {
+function loaclIndex(item) {
     let localAifianListID = document.getElementById('localAifianList');
     let str = '';
-    data.forEach((item, index) => {
+    item.forEach((item, index) => {
         str += `
             <div class="row py-2 rounded">
                 <div class="col-md-12">
@@ -104,15 +104,14 @@ xhr.open('get', 'https://hsiangfeng.github.io/AifianCheck/data/data.json');
 xhr.send(null);
 xhr.onload = function () {
     _data = JSON.parse(xhr.responseText);
-    defaultData()
+    defaultData(_data)
 }
 
 
 
-function defaultData() {
-    let data = _data;
+function defaultData(item) {
     let arrayList = '';
-    data.forEach(function (item, index) {
+    item.forEach(function (item, index) {
         arrayList +=
             `
             <tr>
