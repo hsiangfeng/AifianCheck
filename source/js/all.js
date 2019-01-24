@@ -8,7 +8,6 @@ function calculateTotalAifi(e) {
     const day365Money = parseFloat(aifiMoneyID.value) * aifiPoint;
     const day7Money = day365Money / dayYears * dayWeek;
     const nowDateTime = nowAifianDate();
-
     const strList = {
         day365Money: day365Money.toFixed(2),
         day7Money: day7Money.toFixed(2),
@@ -41,7 +40,7 @@ function calculateTotalAifi(e) {
 function loaclIndex(data) {
     let localAifianListID = document.getElementById('localAifianList');
     let str = '';
-    data.forEach(function (item, index) {
+    data.forEach((item, index) => {
         str += `
             <div class="row py-2 rounded">
                 <div class="col-md-12">
